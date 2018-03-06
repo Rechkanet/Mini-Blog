@@ -14,23 +14,27 @@ class ArticlePage extends Component {
       discription: this.articleList[this.index].discription,
       date: this.articleList[this.index].data
     };
+    this.artcle = this.articleList[this.index];
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleDiscriptionChange = this.handleDiscriptionChange.bind(this);
     this.deleteArticle = this.deleteArticle.bind(this);
+    this.equalArticle = this.equalArticle.bind(this);
   }
 
   handleSubmit(event) {
-    this.articleList.splice(this.index, 1);
-    if ((this.state.title !== '') && 
-        (this.state.discription !== '')) {
-      this.state.date = new Date();
-      if (this.state.title === '') {
-        this.state.title = 'Untitle';
+    if (!this.equalArticle()) {
+      this.articleList.splice(this.index, 1);
+      if ((this.state.title !== '') && 
+          (this.state.discription !== '')) {
+        this.state.date = new Date();
+        if (this.state.title === '') {
+          this.state.title = 'Untitle';
+        }
+        this.articleList.unshift(this.state);
       }
-      this.articleList.unshift(this.state);
+      localStorage.articleList = JSON.stringify(this.articleList);
     }
-    localStorage.articleList = JSON.stringify(this.articleList);
   }
 
   handleTitleChange (event) {
@@ -39,6 +43,11 @@ class ArticlePage extends Component {
 
   handleDiscriptionChange (event) {
     this.setState({discription: event.target.value});
+  }
+
+  equalArticle() {
+    return (this.state.title === this.artcle.title) && 
+           (this.state.discription === this.artcle.discription);
   }
 
   deleteArticle() {
