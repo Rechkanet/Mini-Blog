@@ -1,0 +1,10 @@
+.button-new {
+  padding-left: 90%;
+}
+
+.text {
+  word-wrap: break-word;
+  overflow: hidden;
+  max-width: 90%;
+  padding-right: 10px;
+}
