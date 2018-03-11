@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import './MainPage.css';
 import Moment from 'react-moment';
 import 'moment-timezone';
+import Record from '../../components/Record/Record';
+import NavMenu from '../../components/NavMenu/NavMenu';
 
 class MainPage extends Component {
   constructor(props) {
@@ -16,36 +18,20 @@ class MainPage extends Component {
   render() {
     return (
       <Container>
-        <Breadcrumb className="button-new">
-         <Button 
-           tag={NavLink} 
-           to='/new-article'
-           color="primary"
-          >
-            Добавить
-          </Button>
-        </Breadcrumb>
+        <NavMenu
+          buttonRightText='New label'
+          buttonRightLink='/new-article'
+          buttonBackVisibility='hidden'
+        />
         {
           this.state.articles.map((article, index) =>
-            <div>
-              <Media key={index}>
-                <Media body className="text">
-                  <Media heading className="text">
-                  {article.title}
-                  </Media>
-                  <br />
-                  <Moment format="LLL">
-                    {article.date}
-                  </Moment>
-                  <br />
-                  <br />
-                  {article.discription.substr(0, 250)}
-                </Media>
-                <Button  tag={NavLink} to={`/articles/${index}`} outline color="secondary">Подробнее</Button>
-              </Media>
-              <br />
-              <br />
-            </div>
+            <Record
+              key={index}
+              title={article.title}
+              dataTime={article.date}
+              index={index}
+              buttonVisibility={'visible'}
+            />
           )
         }
       </Container>

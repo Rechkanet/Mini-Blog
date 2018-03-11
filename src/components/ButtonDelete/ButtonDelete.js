@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalFooter, Container } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import './Button-delete.css';
+import './ButtonDelete.css';
 
 class ModalExample extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class ModalExample extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.deleteArticle = this.deleteArticle.bind(this);
     this.articleList = (localStorage.articleList === undefined) ? [] : JSON.parse(localStorage.articleList);
-    this.index = this.props;
+    this.index = this.props.index;
   }
 
   toggle() {

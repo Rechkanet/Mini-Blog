@@ -1,0 +1,14 @@
+.text {
+  word-wrap: break-word;
+  overflow: hidden;
+  max-width: 100%;
+  padding-right: 10px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}

@@ -1,0 +1,12 @@
+.navMenu {
+  margin-bottom: 20px;
+  background: lavender;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}

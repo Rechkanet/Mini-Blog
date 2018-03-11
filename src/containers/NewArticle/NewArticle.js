@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Container, Button, Breadcrumb, Col, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Container, Button, Breadcrumb, Col, Form, FormGroup, Label, Input, Alert, Navbar, NavbarBrand, Nav } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import './NewArticle.css';
+import NavMenu from '../../components/NavMenu/NavMenu';
+import { Redirect } from 'react-router';
 
 class NewArticle extends Component {
   constructor(props) {
@@ -9,7 +11,8 @@ class NewArticle extends Component {
     this.state = {
       title: '',
       discription: '',
-      date: null
+      date: null,
+      hint: 'hidden'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.articleList = (localStorage.articleList === undefined) ? [] : JSON.parse(localStorage.articleList);
@@ -17,15 +20,20 @@ class NewArticle extends Component {
     this.handleDiscriptionChange = this.handleDiscriptionChange.bind(this);
   }
 
-  handleSubmit(event) {
-    this.state.date = new Date();
-    if (this.state.title === '') {
-      this.state.title = 'Untitle';
-    }
-    if (this.state.discription !== '') {
-      this.articleList.unshift(this.state);
+  handleSubmit() {
+    if ((this.state.title !== '') && 
+        (this.state.discription !== '')) {
+      this.state.date = new Date();
+      this.articleList.unshift({
+        title: this.state.title,
+        discription: this.state.discription,
+        date: this.state.date
+      });
       localStorage.articleList = JSON.stringify(this.articleList);
+      return true;
     }
+    this.setState({ hint: 'visible' });
+    return false;
   }
 
   handleTitleChange (event) {
@@ -39,25 +47,16 @@ class NewArticle extends Component {
   render() {
     return (
       <Container>
+        <NavMenu
+          buttonRightText='Done'
+          buttonRightLink={`/view/${0}`}
+          buttonBackVisibility='visible'
+          buttonRightFunction={this.handleSubmit}
+        />
+        <Alert className={this.state.hint} color="warning">
+          Not all fields are filled!
+        </Alert>
         <Form>
-          <Breadcrumb>
-            <Button 
-              tag={NavLink} 
-              to='/'
-              color="primary"
-            >
-              Назад
-            </Button>
-            <Button
-              className="button-accept"
-              onClick={this.handleSubmit}
-              tag={NavLink} 
-              to='/'
-              color="primary"
-            >
-              Готово
-            </Button>
-          </Breadcrumb>
           <FormGroup row>
             <Label for="exampleEmail" sm={2}>Заголовок:</Label>
             <Col sm={10}>
