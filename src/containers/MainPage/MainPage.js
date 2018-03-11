@@ -19,7 +19,7 @@ class MainPage extends Component {
     return (
       <Container>
         <NavMenu
-          buttonRightText='New label'
+          buttonRightText='Add news'
           buttonRightLink='/new-article'
           buttonBackVisibility='hidden'
         />

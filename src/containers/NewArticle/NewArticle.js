@@ -58,15 +58,15 @@ class NewArticle extends Component {
         </Alert>
         <Form>
           <FormGroup row>
-            <Label for="exampleEmail" sm={2}>Заголовок:</Label>
+            <Label for="exampleEmail" sm={2}>Title:</Label>
             <Col sm={10}>
-              <Input value={this.state.title} onChange={this.handleTitleChange} type="text" placeholder="Введите заголовок" />
+              <Input value={this.state.title} onChange={this.handleTitleChange} type="text" placeholder="Enter a title" />
             </Col>
           </FormGroup>
           <FormGroup row>
-            <Label for="exampleText" sm={2}>Содержание:</Label>
+            <Label for="exampleText" sm={2}>Discription:</Label>
             <Col sm={10}>
-              <Input value={this.state.discription} onChange={this.handleDiscriptionChange} type="textarea" placeholder="Введите текст" />
+              <Input value={this.state.discription} onChange={this.handleDiscriptionChange} type="textarea" placeholder="Enter a discription" />
             </Col>
           </FormGroup>
         </Form>

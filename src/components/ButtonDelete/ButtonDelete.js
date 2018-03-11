@@ -29,9 +29,9 @@ class ModalExample extends React.Component {
   render() {
     return (
       <Container className="button-delete">
-        <Button color="secondary" onClick={this.toggle} size="lg" block >Удалить</Button>
+        <Button color="secondary" onClick={this.toggle} size="lg" block >Delete</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Удалить текущий пост?</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Delete current news?</ModalHeader>
           <ModalFooter>
             <Button 
               color="primary" 
@@ -40,13 +40,13 @@ class ModalExample extends React.Component {
               to='/'
               color="danger" 
             >
-              Принять
+              Accept
             </Button>{' '}
             <Button 
               color="secondary" 
               onClick={this.toggle} 
             >
-              Отмена
+              Cancel
             </Button>
           </ModalFooter>
         </Modal>
